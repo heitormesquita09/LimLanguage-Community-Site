@@ -15,7 +15,7 @@ LimLanguage é uma comunidade independente, criada por estudantes de Limeira, se
 - Agenda lida do arquivo `data/events.json` (veja `data/COMO-EDITAR-EVENTOS.md`).
 - Botão "Entrar na comunidade" sempre visível no topo, inclusive no celular. Ele leva à página "Como participar", e só o botão dessa página abre o formulário de cadastro (em nova aba).
 - Evento "próximo" com data passada vai sozinho para "Realizados". Para a equipe conferir a agenda: abra o site com `?checar=1` no endereço (ex.: `eventos.html?checar=1`).
-- O link do grupo de WhatsApp **não** fica no site: ele é entregue na mensagem de confirmação do formulário de cadastro.
+- A página "Como participar" tem o botão do grupo de WhatsApp (link em `assets/js/config.js`) e, em destaque abaixo, o cadastro opcional para acumular carimbos.
 
 ## Onde mexer
 

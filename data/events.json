@@ -15,16 +15,16 @@
       "time": "10:00 – 11:00",
       "language": "en",
       "place": "online"
-    }
+    },
     {
-  "status": "upcoming",
-  "name": "Conversation III",
-  "date": "2027-12-10",
-  "time": "10:00 – 11:00",
-  "language": "en",
-  "place": "online",
-  "link": "https://meet.google.com",
-  "description": "Conversação livre e dinâmicas divertidas em inglês!"
+      "status": "upcoming",
+      "name": "Conversation III",
+      "date": "2027-12-10",
+      "time": "10:00 – 11:00",
+      "language": "en",
+      "place": "online",
+      "link": "https://meet.google.com",
+      "description": "Conversação livre e dinâmicas divertidas em inglês!"
     }
   ]
 }
