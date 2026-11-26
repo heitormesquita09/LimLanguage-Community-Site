@@ -81,7 +81,38 @@
     '<circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="3"/>' +
     '<text x="32" y="40" text-anchor="middle" font-family="Georgia, \'Times New Roman\', serif" font-weight="700" font-size="22" fill="currentColor">LL</text>' +
     "</svg>";
+  /* ---------- ícones de contato (SVG próprio, traço no mesmo estilo do site; cor = currentColor) ---------- */
+  function svgIcon(inner) {
+    return '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" ' +
+      'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + "</svg>";
+  }
+  var ICONS = {
+    mail: svgIcon('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>'),
+    instagram: svgIcon('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>' +
+      '<circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/>'),
+    linkedin: svgIcon('<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6M8 7.6v.01M12 16.5v-6' +
+      'M12 13.2c0-1.6 1-2.7 2.3-2.7s2.2.9 2.2 2.6v3.4"/>'),
+    whatsapp: svgIcon('<path d="M3.5 20.5l1.2-4A8.5 8.5 0 1 1 8 19.3z"/>' +
+      '<path d="M9.2 8.3c-.3 2.9 3 6.6 6.3 6.4l.9-1.5-1.9-1-1 .8c-1-.4-2.2-1.6-2.6-2.6l.8-1-1-1.9z"/>')
+  };
 
+  // O link do WhatsApp só entra no rodapé quando estiver configurado de verdade (não o modelo "SEU_LINK_AQUI")
+  function hasWhatsapp() {
+    var u = String(CFG.whatsappUrl || "").trim();
+    return !!u && !/SEU_LINK/i.test(u);
+  }
+
+  // Dados de cada canal de contato (usado no rodapé, na página Contato, em Parcerias e no FAQ)
+  function contactChannels() {
+    var list = [];
+    if (CFG.email) list.push({ key: "email", label: CFG.email, name: t("contact.email"), href: "mailto:" + CFG.email, icon: ICONS.mail, ext: false });
+    if (CFG.instagramUrl) list.push({ key: "instagram", label: "Instagram", name: "Instagram", href: CFG.instagramUrl, icon: ICONS.instagram, ext: true });
+    if (hasWhatsapp()) list.push({ key: "whatsapp", label: "WhatsApp", name: "WhatsApp", href: CFG.whatsappUrl, icon: ICONS.whatsapp, ext: true });
+    if (CFG.linkedinUrl) list.push({ key: "linkedin", label: "LinkedIn", name: "LinkedIn", href: CFG.linkedinUrl, icon: ICONS.linkedin, ext: true });
+    return list;
+  }
+  function extAttrs(c) { return c.ext ? ' target="_blank" rel="noopener"' : ""; }
+  function newTabSr(c) { return c.ext ? '<span class="sr-only">' + esc(t("common.newtab")) + "</span>" : ""; }
   /* ---------- cabeçalho e rodapé ---------- */
   var NAV = [
     ["o-que-somos.html", "nav.about"],
@@ -206,17 +237,22 @@
 
     if (footer) {
       footer.className = "site-footer";
-      var mail = esc(CFG.email || "");
+            var channels = contactChannels();
+      // Lista com logo + texto clicável
+      var contactList = channels.map(function (c) {
+        return '<li><a class="icon-link" href="' + esc(c.href) + '"' + extAttrs(c) + ">" + c.icon +
+          "<span>" + esc(c.label) + "</span>" + newTabSr(c) + "</a></li>";
+      }).join("");
+      // Fileira de logos clicáveis (carimbos redondos)
+      var socialRow = '<ul class="social-row" aria-label="' + esc(t("footer.social")) + '">' + channels.map(function (c) {
+        return '<li><a class="social-btn" href="' + esc(c.href) + '"' + extAttrs(c) +
+          ' aria-label="' + esc(c.name + (c.ext ? t("common.newtab") : "")) + '" title="' + esc(c.name) + '">' + c.icon + "</a></li>";
+      }).join("") + "</ul>";
       footer.innerHTML =
         '<div class="wrap">' +
         '<div class="footer-cols">' +
-          '<div><h2>' + esc(t("footer.about")) + "</h2><p>" + esc(t("footer.tag")) + "</p></div>" +
-          '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" +
-            '<li><a href="mailto:' + mail + '">' + mail + "</a></li>" +
-            '<li><a href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
-              "Instagram" + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
-            '<li><a href="' + esc(CFG.linkedinUrl || "#") + '" target="_blank" rel="noopener">LinkedIn<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
-            "</ul></div>" +
+                    '<div><h2>' + esc(t("footer.about")) + "</h2><p>" + esc(t("footer.tag")) + "</p>" + socialRow + "</div>" +
+          '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" + contactList + "</ul></div>" +
           '<div><h2>' + esc(t("footer.more")) + "</h2><ul>" +
             '<li><a href="carimbos.html">' + esc(t("stamps.title")) + "</a></li>" +
             '<li><a href="faq.html">' + esc(t("faq.title")) + "</a></li>" +
@@ -265,12 +301,16 @@
       }
     });
 
-    // Links externos (Instagram, LinkedIn etc.)
+        // Links de contato com logo + texto (Instagram, LinkedIn, e-mail)
+    function iconLink(a, icon, label) {
+      a.classList.add("icon-link");
+      a.innerHTML = icon + "<span>" + esc(label) + "</span>";
+    }
     root.querySelectorAll("[data-instagram]").forEach(function (a) {
       a.setAttribute("href", CFG.instagramUrl || "#");
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener");
-      a.textContent = "Instagram";
+            iconLink(a, ICONS.instagram, a.getAttribute("data-label") ? t(a.getAttribute("data-label")) : "Instagram");
       var s = document.createElement("span");
       s.className = "sr-only";
       s.textContent = t("common.newtab");
@@ -280,14 +320,29 @@
       a.setAttribute("href", CFG.linkedinUrl || "#");
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener");
-      a.textContent = "LinkedIn";
+            iconLink(a, ICONS.linkedin, a.getAttribute("data-label") ? t(a.getAttribute("data-label")) : "LinkedIn");
       var s = document.createElement("span");
       s.className = "sr-only";
       s.textContent = t("common.newtab");
       a.appendChild(s);
     });
-    root.querySelectorAll("[data-email]").forEach(function (el) { el.textContent = CFG.email || ""; });
-    root.querySelectorAll("[data-mailto]").forEach(function (a) { a.setAttribute("href", "mailto:" + (CFG.email || "")); });
+        // Onde o e-mail aparece escrito, ele vira um link clicável (mailto) com o logo de envelope
+    root.querySelectorAll("[data-email]").forEach(function (el) {
+      var mail = CFG.email || "";
+      el.innerHTML = mail
+        ? '<a class="icon-link" href="mailto:' + esc(mail) + '">' + ICONS.mail + "<span>" + esc(mail) + "</span></a>"
+        : "";
+    });
+    // Botão "Abrir no app de e-mail": ganha o logo de envelope
+    root.querySelectorAll("[data-mailto]").forEach(function (a) {
+      a.setAttribute("href", "mailto:" + (CFG.email || ""));
+      iconLink(a, ICONS.mail, t(a.getAttribute("data-i18n") || "contact.mailto"));
+    });
+    // Logos soltos (ex.: selo nos cartões da página Contato)
+    root.querySelectorAll("[data-icon]").forEach(function (el) {
+      var k = el.getAttribute("data-icon");
+      if (ICONS[k]) el.innerHTML = ICONS[k];
+    });
 
     // Aviso de formulário pendente (só aparece enquanto formUrl estiver vazio)
     root.querySelectorAll("[data-form-pending]").forEach(function (el) { el.hidden = isExternalForm(); });
@@ -412,7 +467,7 @@
     var done = (state.events || []).filter(function (e) { return e.status === "done"; });
     var html = '<div class="empty-state"><p>' + esc(t(state.eventsFailed ? "event.error" : "event.empty")) + "</p>" +
       '<a class="btn btn-ghost" href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
-      esc(t("event.insta")) + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></div>";
+            ICONS.instagram + esc(t("event.insta")) + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></div>";
     if (withRecent && done.length) {
       html += '<h3 class="subhead">' + esc(t("event.recent")) + '</h3><ul class="event-list">' +
         done.slice(0, 2).map(eventCard).join("") + "</ul>";

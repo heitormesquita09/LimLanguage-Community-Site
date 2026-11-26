@@ -146,7 +146,7 @@ window.LL_I18N = {
 
     "contact.title": "Contato",
     "contact.h1": "Contato",
-    "contact.lead": "Fale com a gente por e-mail ou pelo Instagram.",
+        "contact.lead": "Fale com a gente por e-mail, pelo Instagram ou pelo LinkedIn.",
     "contact.email": "E-mail",
     "contact.copy": "Copiar e-mail",
     "contact.copied": "E-mail copiado!",
@@ -171,7 +171,7 @@ window.LL_I18N = {
     "faq.q7": "A LimLanguage é da universidade?",
     "faq.a7": "Não. É uma comunidade independente, criada por estudantes de Limeira, sem vínculo oficial com a universidade.",
     "faq.q8": "Como proponho uma parceria?",
-    "faq.a8": "Pela página Parcerias, por e-mail ou pelo Instagram.",
+        "faq.a8": "Pela página Parcerias, por e-mail, pelo Instagram ou pelo LinkedIn.",
 
     "band.h2": "Pronto para praticar?",
     "band.p": "Entre na comunidade e venha ao próximo encontro.",
@@ -179,6 +179,7 @@ window.LL_I18N = {
     "footer.about": "LimLanguage",
     "footer.tag": "Sua passagem para novos idiomas.",
     "footer.contact": "Contato",
+        "footer.social": "LimLanguage nas redes e por e-mail",
     "footer.more": "Mais",
     "footer.indep": "A LimLanguage é uma comunidade independente, sem fins lucrativos, criada por estudantes de Limeira. Não tem vínculo oficial com a universidade."
   },
@@ -328,7 +329,7 @@ window.LL_I18N = {
 
     "contact.title": "Contacto",
     "contact.h1": "Contacto",
-    "contact.lead": "Escríbenos por correo o por Instagram.",
+        "contact.lead": "Escríbenos por correo, por Instagram o por LinkedIn.",
     "contact.email": "Correo electrónico",
     "contact.copy": "Copiar correo",
     "contact.copied": "¡Correo copiado!",
@@ -353,7 +354,7 @@ window.LL_I18N = {
     "faq.q7": "¿LimLanguage es de la universidad?",
     "faq.a7": "No. Es una comunidad independiente, creada por estudiantes de Limeira, sin vínculo oficial con la universidad.",
     "faq.q8": "¿Cómo propongo una alianza?",
-    "faq.a8": "Desde la página Alianzas, por correo o por Instagram.",
+        "faq.a8": "Desde la página Alianzas, por correo, por Instagram o por LinkedIn.",
 
     "band.h2": "¿Listo para practicar?",
     "band.p": "Únete a la comunidad y ven al próximo encuentro.",
@@ -361,6 +362,7 @@ window.LL_I18N = {
     "footer.about": "LimLanguage",
     "footer.tag": "Tu pasaje a nuevos idiomas.",
     "footer.contact": "Contacto",
+        "footer.social": "LimLanguage en redes y por correo",
     "footer.more": "Más",
     "footer.indep": "LimLanguage es una comunidad independiente, sin fines de lucro, creada por estudiantes de Limeira. No tiene vínculo oficial con la universidad."
   },
@@ -510,7 +512,7 @@ window.LL_I18N = {
 
     "contact.title": "Contact",
     "contact.h1": "Contact",
-    "contact.lead": "Reach us by email or on Instagram.",
+        "contact.lead": "Reach us by email, on Instagram or on LinkedIn.",
     "contact.email": "Email",
     "contact.copy": "Copy email",
     "contact.copied": "Email copied!",
@@ -535,7 +537,7 @@ window.LL_I18N = {
     "faq.q7": "Is LimLanguage part of the university?",
     "faq.a7": "No. It is an independent community created by students from Limeira, with no official link to the university.",
     "faq.q8": "How do I propose a partnership?",
-    "faq.a8": "On the Partnerships page, by email or on Instagram.",
+        "faq.a8": "On the Partnerships page, by email, on Instagram or on LinkedIn.",
 
     "band.h2": "Ready to practice?",
     "band.p": "Join the community and come to the next meetup.",
@@ -543,6 +545,7 @@ window.LL_I18N = {
     "footer.about": "LimLanguage",
     "footer.tag": "Your ticket to new languages.",
     "footer.contact": "Contact",
+    "footer.social": "LimLanguage on social media and by email",
     "footer.more": "More",
     "footer.indep": "LimLanguage is an independent, non-profit community created by students from Limeira. It has no official link to the university."
   }

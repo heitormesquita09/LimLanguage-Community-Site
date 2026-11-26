@@ -447,7 +447,21 @@ main:focus { outline: none; }
   user-select: all; overflow-wrap: anywhere;
 }
 .copy-status { font-weight: 700; min-height: 1.5em; }
+/* Logos de contato (ícones SVG em traço, herdam a cor do texto em todos os temas) */
+.ico { width: 1.2em; height: 1.2em; flex: none; }
+.icon-link { display: inline-flex; align-items: center; gap: .45rem; font-weight: 700; }
+.icon-link .ico { vertical-align: -.2em; }
+.btn .ico { width: 1.15em; height: 1.15em; }
+.email-text .icon-link { font-weight: 400; }
 
+/* Selo redondo no título dos cartões da página Contato (estilo carimbo) */
+.contact-title { display: flex; align-items: center; gap: .65rem; }
+.contact-badge {
+  display: grid; place-items: center; width: 48px; height: 48px; flex: none;
+  border: var(--border-w) dashed var(--ink); border-radius: 50%;
+  background: var(--paper); color: var(--ink); transform: rotate(-4deg);
+}
+.contact-badge .ico { width: 24px; height: 24px; }
 /* ---------- CTA final e rodapé ---------- */
 .cta-band { background: var(--ink); color: var(--paper); }
 .cta-band h2 { color: var(--paper); }
@@ -463,6 +477,21 @@ main:focus { outline: none; }
 .site-footer h2 { font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .5rem; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
 .site-footer li a { display: inline-block; padding: .35rem 0; min-height: 36px; }
+.site-footer li a.icon-link { display: inline-flex; font-weight: inherit; }
+
+/* Fileira de logos clicáveis no rodapé (carimbos redondos, alvo de toque de 48px) */
+.site-footer .social-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.site-footer .social-row a.social-btn {
+  display: grid; place-items: center; width: 48px; height: 48px; padding: 0;
+  border: var(--border-w) dashed var(--ink); border-radius: 50%;
+  background: var(--card); color: var(--ink); text-decoration: none;
+  transform: rotate(-4deg); transition: transform .12s ease, background-color .12s ease;
+}
+.site-footer .social-row a.social-btn:hover {
+  background: var(--done-bg); border-style: solid; transform: rotate(0deg);
+}
+.site-footer .social-row a.social-btn:focus-visible { border-radius: 50%; }
+.site-footer .social-row .ico { width: 24px; height: 24px; }
 .indep { font-size: .95rem; color: var(--muted); max-width: 70ch; border-top: 1px dashed var(--line-soft); padding-top: 1rem; margin: 0; }
 :root[data-theme="hc"] .indep { border-top-color: var(--line); }
 
@@ -499,7 +528,7 @@ main:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn { transition: none; }
+  .btn, .site-footer .social-row a.social-btn { transition: none; }
 }
 
 @media print {

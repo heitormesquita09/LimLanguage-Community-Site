@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contato</title>
-<meta name="description" content="Contato da LimLanguage: e-mail e Instagram.">
+<meta name="description" content="Contato da LimLanguage: e-mail, Instagram e LinkedIn.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
     <p class="lead" data-i18n="contact.lead">Fale com a gente por e-mail ou pelo Instagram.</p>
     <div class="grid grid-2">
       <div class="card">
-        <h2 data-i18n="contact.email">E-mail</h2>
+                <h2 class="contact-title"><span class="contact-badge" data-icon="mail"></span><span data-i18n="contact.email">E-mail</span></h2>
         <p class="email-text" data-email></p>
         <div class="contact-line">
           <button type="button" class="btn btn-primary btn-small" id="copy-email" data-i18n="contact.copy">Copiar e-mail</button>
@@ -35,11 +35,11 @@
         <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
       </div>
       <div class="card">
-        <h2 data-i18n="contact.insta">Instagram</h2>
+                <h2 class="contact-title"><span class="contact-badge" data-icon="instagram"></span><span data-i18n="contact.insta">Instagram</span></h2>
         <p><a data-instagram href="#">Instagram</a></p>
       </div>
       <div class="card">
-        <h2 data-i18n="contact.linkedin">LinkedIn</h2>
+        <h2 class="contact-title"><span class="contact-badge" data-icon="linkedin"></span><span data-i18n="contact.linkedin">LinkedIn</span></h2>
         <p><a data-linkedin href="#">LinkedIn</a></p>
       </div>
     </div>
